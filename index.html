@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Signpost</title>
+
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="app.js"></script>
+  <style>
+
+html, body, #map {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100vw;
+}
+
+.master {
+  position:relative;
+  width:100%;
+  height: 100vh;
+  background: #ddd;
+}
+
+.map div {
+  position: absolute;
+}
+
+#text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#terminal{
+  position: absolute;
+  background: #111;
+  color: #ddd;
+  width: 98%;
+  height: 99%;
+  font-size: 12px;
+
+  font-family: "Consolas", "courier new", Times, serif;
+  font-weight: bold;
+}
+
+.range{
+  position:absolute;
+  bottom: 3%;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div id="canvas" class="master" style="width: 100%; height: 90%;">
+      <textarea id="terminal" spellcheck="false"></textarea>
+      <div id="map"></div>
+      <div id="list"></div>
+    </div>
+
+    <div class="range">
+      <input type="range" value="0" min="0" max="1" step="1" oninput="switchingElement(document, getChildIds(document, 'canvas'), this.value)">
+    </div>
+
+    <script>drawMap(L, 'map')</script>
+    <script>drawTerminal(document)</script>
+
+    <!-- init -->
+    <script>switchingElement(document, getChildIds(document, 'canvas'), 0)</script>
+  </body>
+</html>
